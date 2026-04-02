@@ -1,4 +1,4 @@
-# Student Record CRUD App
+# Simple Student Record CRUD App
 
 A desktop application for managing student records, built with Python and MySQL.
 
