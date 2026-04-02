@@ -1,3 +1,5 @@
+#MySQL database connection and operations for the Student Record CRUD App
+
 import mysql.connector
 from dotenv import load_dotenv
 import os
