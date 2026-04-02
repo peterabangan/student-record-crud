@@ -1,3 +1,5 @@
+# UI for Student Record CRUD App using Tkinter
+
 import tkinter as tk
 from tkinter import ttk, messagebox
 from database import Database
