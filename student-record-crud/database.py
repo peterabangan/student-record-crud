@@ -32,6 +32,9 @@ class Database:
     def update_student(self, id, name, age, grade):
         self.cursor.execute(
             "UPDATE students SET name=%s, age=%s, grade=%s WHERE id=%s",
-            (name, age, grade, id)
+            (name, age, grade, id)  
         )
         self.conn.commit()
+    def get_all_students_sorted(self):
+        self.cursor.execute("SELECT * FROM students ORDER BY name ASC")
+        return self.cursor.fetchall() 

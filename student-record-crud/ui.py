@@ -8,7 +8,7 @@ db = Database()
 
 root = tk.Tk()
 root.title("Student Record System")
-root.geometry("820x400")
+root.geometry("1000x500")
 
 #input variables
 name_var = tk.StringVar()
@@ -116,6 +116,8 @@ tk.Button(root, text="Add", command=add_student).grid(row=3, column=0, pady=5)
 tk.Button(root, text="Update", command=update_student).grid(row=3, column=1)
 tk.Button(root, text="Delete", command=delete_student).grid(row=3, column=2)
 tk.Button(root, text="Clear", command=clear_fields).grid(row=3, column=3)
+tk.Button(root, text="Sort by ID", command=sort_by_id).grid(row=3, column=4)
+tk.Button(root, text="Sort by Name", command=sort_by_name).grid(row=3, column=5)
 
 # Bind click on treeview to auto-fill input fields
 tree.bind("<ButtonRelease-1>", select_student)
