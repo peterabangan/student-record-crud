@@ -95,6 +95,16 @@ def search_students(*args):
         if query in str(record[1]).lower():
             tree.insert("", "end", values=record)       
 
+def sort_by_name():
+    for row in tree.get_children():
+        tree.delete(row)
+    for record in db.get_all_students_sorted():
+        tree.insert("", "end", values=record)      
+
+def sort_by_id():
+    load_students
+    
+
 search_var = tk.StringVar()
 search_var.trace("w", search_students) 
 tk.Entry(root, textvariable=search_var).grid(row=0, column=3, columnspan=2, padx=10, pady=5)
