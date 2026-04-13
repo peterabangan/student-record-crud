@@ -85,6 +85,7 @@ def clear_fields():
     name_var.set("")
     age_var.set("")
     grade_var.set("")
+    search_var.set("")
 
 def search_students(*args):
     query = search_var.get().strip().lower()
