@@ -35,6 +35,11 @@ class Database:
             (name, age, grade, id)  
         )
         self.conn.commit()
+
     def get_all_students_sorted(self):
         self.cursor.execute("SELECT * FROM students ORDER BY name ASC")
+        return self.cursor.fetchall() 
+    
+    def get_all_students_by_id(self):
+        self.cursor.execute("SELECT * FROM students ORDER BY id ASC")
         return self.cursor.fetchall() 

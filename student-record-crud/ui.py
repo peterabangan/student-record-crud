@@ -10,6 +10,10 @@ root = tk.Tk()
 root.title("Student Record System")
 root.geometry("1000x500")
 
+#form frame
+form_frame = tk.LabelFrame(root, text="Student Details")
+form_frame.pack(fill='x', padx=10, pady=5)
+
 #input variables
 name_var = tk.StringVar()
 age_var = tk.StringVar()
@@ -17,24 +21,28 @@ grade_var = tk.StringVar()
 
 #input fields
 #name
-tk.Label(root, text="Name:").grid(row=0, column=0, padx=10, pady=5)
-tk.Entry(root, textvariable=name_var).grid(row=0, column=1)
+tk.Label(form_frame, text="Name:").grid(row=0, column=0, padx=10, pady=5)
+tk.Entry(form_frame, textvariable=name_var).grid(row=0, column=1)
 
 #age
-tk.Label(root, text="Age:").grid(row=1, column=0, padx=10, pady=5)
-tk.Entry(root, textvariable=age_var).grid(row=1, column=1)
+tk.Label(form_frame, text="Age:").grid(row=1, column=0, padx=10, pady=5)
+tk.Entry(form_frame, textvariable=age_var).grid(row=1, column=1)
 
 #grade
-tk.Label(root, text="Grade:").grid(row=2, column=0, padx=10, pady=5)
-tk.Entry(root, textvariable=grade_var).grid(row=2, column=1)
+tk.Label(form_frame, text="Grade:").grid(row=2, column=0, padx=10, pady=5)
+tk.Entry(form_frame, textvariable=grade_var).grid(row=2, column=1)
+
+# Table Frame
+table_frame = tk.LabelFrame(root, text="Records")
+table_frame.pack(fill='both', padx=10, pady=5, expand=True)
 
 #treeview
-tree = ttk.Treeview(root, columns=("ID", "Name", "Age", "Grade"), show="headings")
+tree = ttk.Treeview(table_frame, columns=("ID", "Name", "Age", "Grade"), show="headings")
 tree.heading("ID", text="ID")
 tree.heading("Name", text="Name")
 tree.heading("Age", text="Age")
 tree.heading("Grade", text="Grade")
-tree.grid(row=4, column=0, columnspan=4, padx=10, pady=10)
+tree.pack(fill='both', expand=True)
 
 #functions
 def load_students():
@@ -102,22 +110,31 @@ def sort_by_name():
         tree.insert("", "end", values=record)      
 
 def sort_by_id():
-    load_students
+    for row in tree.get_children():
+        tree.delete(row)
+    for record in db.get_all_students_by_id():
+        tree.insert("", "end", values=record)     
     
+#search frame
+search_frame = tk.LabelFrame(root, text="Search")
+search_frame.pack(fill='x', padx=10, pady=5)    
 
 search_var = tk.StringVar()
 search_var.trace("w", search_students) 
-tk.Entry(root, textvariable=search_var).grid(row=0, column=3, columnspan=2, padx=10, pady=5)
-tk.Label(root, text="Search:").grid(row=0, column=2, padx=10, pady=5)
+tk.Entry(search_frame, textvariable=search_var).pack(side='left', padx=5, pady=5, fill='x', expand=True)
+tk.Button(search_frame, text="Sort by ID", command=sort_by_id).pack(side='left', padx=5, pady=5)
+tk.Button(search_frame, text="Sort by Name", command=sort_by_name).pack(side='left', padx=5, pady=5)
+
+#button frame
+button_frame = tk.LabelFrame(root, text="Actions")
+button_frame.pack(fill='x', padx=10, pady=5)
 
 #buttons
 
-tk.Button(root, text="Add", command=add_student).grid(row=3, column=0, pady=5)
-tk.Button(root, text="Update", command=update_student).grid(row=3, column=1)
-tk.Button(root, text="Delete", command=delete_student).grid(row=3, column=2)
-tk.Button(root, text="Clear", command=clear_fields).grid(row=3, column=3)
-tk.Button(root, text="Sort by ID", command=sort_by_id).grid(row=3, column=4)
-tk.Button(root, text="Sort by Name", command=sort_by_name).grid(row=3, column=5)
+tk.Button(button_frame, text="Add", command=add_student).pack(side='left', padx=5, pady=5)
+tk.Button(button_frame, text="Update", command=update_student).pack(side='left', padx=5, pady=5)
+tk.Button(button_frame, text="Delete", command=delete_student).pack(side='left', padx=5, pady=5)
+tk.Button(button_frame, text="Clear", command=clear_fields).pack(side='left', padx=5, pady=5)
 
 # Bind click on treeview to auto-fill input fields
 tree.bind("<ButtonRelease-1>", select_student)
