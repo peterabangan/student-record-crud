@@ -32,7 +32,7 @@ tk.Entry(form_frame, textvariable=age_var).grid(row=1, column=1)
 tk.Label(form_frame, text="Grade:").grid(row=2, column=0, padx=10, pady=5)
 tk.Entry(form_frame, textvariable=grade_var).grid(row=2, column=1)
 
-# Table Frame
+#table frame
 table_frame = tk.LabelFrame(root, text="Records")
 table_frame.pack(fill='both', padx=10, pady=5, expand=True)
 
