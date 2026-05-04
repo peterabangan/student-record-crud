@@ -15,14 +15,20 @@ form_frame = tk.LabelFrame(root, text="Student Details")
 form_frame.pack(fill='x', padx=10, pady=5)
 
 #input variables
-name_var = tk.StringVar()
+first_name_var = tk.StringVar()
+last_name_var = tk.StringVar()
 age_var = tk.StringVar()
 grade_var = tk.StringVar()
+section_var = tk.StringVar()
+gender_var = tk.StringVar()
 
 #input fields
 #name
-tk.Label(form_frame, text="Name:").grid(row=0, column=0, padx=10, pady=5)
-tk.Entry(form_frame, textvariable=name_var).grid(row=0, column=1)
+tk.Label(form_frame, text="First Name:").grid(row=0, column=0, padx=10, pady=5)
+tk.Entry(form_frame, textvariable=first_name_var).grid(row=0, column=1)
+
+tk.Label(form_frame, text="Last Name:").grid(row=0, column=2, padx=10, pady=5)
+tk.Entry(form_frame, textvariable=last_name_var).grid(row=0, column=3)
 
 #age
 tk.Label(form_frame, text="Age:").grid(row=1, column=0, padx=10, pady=5)
@@ -31,6 +37,14 @@ tk.Entry(form_frame, textvariable=age_var).grid(row=1, column=1)
 #grade
 tk.Label(form_frame, text="Grade:").grid(row=2, column=0, padx=10, pady=5)
 tk.Entry(form_frame, textvariable=grade_var).grid(row=2, column=1)
+
+#section
+tk.Label(form_frame, text="Section:").grid(row=1, column=2, padx=10, pady=5)
+tk.Entry(form_frame, textvariable=section_var).grid(row=1, column=3)
+
+#gender
+tk.Label(form_frame, text="Gender:").grid(row=2, column=2, padx=10, pady=5)
+tk.Entry(form_frame, textvariable=gender_var).grid(row=2, column=3)
 
 #table frame
 table_frame = tk.LabelFrame(root, text="Records")
