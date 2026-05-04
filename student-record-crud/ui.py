@@ -51,12 +51,9 @@ table_frame = tk.LabelFrame(root, text="Records")
 table_frame.pack(fill='both', padx=10, pady=5, expand=True)
 
 #treeview
-tree = ttk.Treeview(table_frame, columns=("ID", "Name", "Age", "Grade"), show="headings")
-tree.heading("ID", text="ID")
-tree.heading("Name", text="Name")
-tree.heading("Age", text="Age")
-tree.heading("Grade", text="Grade")
-tree.pack(fill='both', expand=True)
+tree = ttk.Treeview(table_frame, columns=("ID", "First Name", "Last Name", "Age", "Grade", "Section", "Gender"), show="headings")
+for col in ("ID", "First Name", "Last Name", "Age", "Grade", "Section", "Gender"):
+    tree.heading(col, text=col)
 
 #functions
 def load_students():
