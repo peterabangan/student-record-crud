@@ -19,20 +19,20 @@ class Database:
     def get_all_students(self):
         self.cursor.execute("SELECT * FROM students")
         return self.cursor.fetchall()
-    def add_student(self, name, age, grade):
+    def add_student(self, first_name, last_name, age, grade, section, gender):
         self.cursor.execute(
-            "INSERT INTO students (name, age, grade) VALUES (%s, %s, %s)",
-            (name, age, grade)
+            "INSERT INTO students (first_name, last_name, age, grade, section, gender) VALUES (%s, %s, %s, %s, %s, %s)",
+            (first_name, last_name, age, grade, section, gender)
         )
         self.conn.commit()
     def delete_student(self, id):
         self.cursor.execute("DELETE FROM students WHERE id=%s", (id,))
         self.conn.commit()
 
-    def update_student(self, id, name, age, grade):
+    def update_student(self, id, first_name, last_name, age, grade, section, gender):
         self.cursor.execute(
-            "UPDATE students SET name=%s, age=%s, grade=%s WHERE id=%s",
-            (name, age, grade, id)  
+            "UPDATE students SET first_name=%s, last_name=%s, age=%s, grade=%s, section=%s, gender=%s WHERE id=%s",
+            (first_name, last_name, age, grade, section, gender, id)  
         )
         self.conn.commit()
 
