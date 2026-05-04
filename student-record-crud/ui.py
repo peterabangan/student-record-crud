@@ -8,7 +8,7 @@ db = Database()
 
 root = tk.Tk()
 root.title("Student Record System")
-root.geometry("1000x500")
+root.geometry("1800x800")
 
 #form frame
 form_frame = tk.LabelFrame(root, text="Student Details")
@@ -121,7 +121,7 @@ def search_students(*args):
         if query in str(record[1]).lower():
             tree.insert("", "end", values=record)       
 
-def sort_by_name():
+def sort_by_firstname():
     for row in tree.get_children():
         tree.delete(row)
     for record in db.get_all_students_sorted():
@@ -130,7 +130,7 @@ def sort_by_name():
 def sort_by_id():
     for row in tree.get_children():
         tree.delete(row)
-    for record in db.get_all_students_by_id():
+    for record in db.get_all_students_by_id(): 
         tree.insert("", "end", values=record)     
     
 #search frame
@@ -141,7 +141,7 @@ search_var = tk.StringVar()
 search_var.trace("w", search_students) 
 tk.Entry(search_frame, textvariable=search_var).pack(side='left', padx=5, pady=5, fill='x', expand=True)
 tk.Button(search_frame, text="Sort by ID", command=sort_by_id).pack(side='left', padx=5, pady=5)
-tk.Button(search_frame, text="Sort by Name", command=sort_by_name).pack(side='left', padx=5, pady=5)
+tk.Button(search_frame, text="Sort by First Name", command=sort_by_firstname).pack(side='left', padx=5, pady=5)
 
 #button frame
 button_frame = tk.LabelFrame(root, text="Actions")
