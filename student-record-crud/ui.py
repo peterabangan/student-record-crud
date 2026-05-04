@@ -44,7 +44,7 @@ tk.Entry(form_frame, textvariable=section_var).grid(row=1, column=3)
 
 #gender
 tk.Label(form_frame, text="Gender:").grid(row=2, column=2, padx=10, pady=5)
-tk.Entry(form_frame, textvariable=gender_var).grid(row=2, column=3)
+ttk.Combobox(form_frame, textvariable=gender_var, values=["Male", "Female"], state="readonly").grid(row=2, column=3, padx=5, pady=5)
 
 #table frame
 table_frame = tk.LabelFrame(root, text="Records")
@@ -66,13 +66,13 @@ def load_students():
         tree.insert("", "end", values=record)
 
 def add_student():
-    if not name_var.get() or not age_var.get() or not grade_var.get():
+    if not first_name_var.get() or not last_name_var.get() or not age_var.get() or not grade_var.get() or not section_var.get() or not gender_var.get():
         messagebox.showerror("Error", "All fields are required.")
         return
     if not age_var.get().isdigit():
         messagebox.showerror("Error", "Age must be a number.")
         return
-    db.add_student(name_var.get(), age_var.get(), grade_var.get())
+    db.add_student(first_name_var.get(), last_name_var.get(), age_var.get(), grade_var.get(), section_var.get(), gender_var.get())
     load_students()
 
 def delete_student():
@@ -92,21 +92,27 @@ def update_student():
         messagebox.showerror("Error", "Select a student first.")
         return
     student_id = tree.item(selected)["values"][0]
-    db.update_student(student_id, name_var.get(), age_var.get(), grade_var.get())
+    db.update_student(student_id, first_name_var.get(), last_name_var.get(), age_var.get(), grade_var.get(), section_var.get(), gender_var.get())
     load_students()
 
 def select_student(event):
     selected = tree.focus()
     if selected:
         values = tree.item(selected)["values"]
-        name_var.set(values[1])
-        age_var.set(values[2])
-        grade_var.set(values[3])
+        first_name_var.set(values[1])
+        last_name_var.set(values[2])
+        age_var.set(values[3])
+        grade_var.set(values[4])
+        section_var.set(values[5])
+        gender_var.set(values[6])
 
 def clear_fields():
-    name_var.set("")
+    first_name_var.set("")
+    last_name_var.set("")
     age_var.set("")
     grade_var.set("")
+    section_var.set("")
+    gender_var.set("")
     search_var.set("")
 
 def search_students(*args):
