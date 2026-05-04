@@ -17,7 +17,7 @@ class Database:
         self.cursor = self.conn.cursor()
 
     def get_all_students(self):
-        self.cursor.execute("SELECT * FROM students")
+        self.cursor.execute("SELECT id, first_name, last_name, age, grade, section, gender FROM students")
         return self.cursor.fetchall()
     def add_student(self, first_name, last_name, age, grade, section, gender):
         self.cursor.execute(
