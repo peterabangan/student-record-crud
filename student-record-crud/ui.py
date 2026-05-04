@@ -54,6 +54,7 @@ table_frame.pack(fill='both', padx=10, pady=5, expand=True)
 tree = ttk.Treeview(table_frame, columns=("ID", "First Name", "Last Name", "Age", "Grade", "Section", "Gender"), show="headings")
 for col in ("ID", "First Name", "Last Name", "Age", "Grade", "Section", "Gender"):
     tree.heading(col, text=col)
+tree.pack(fill='both', expand=True)
 
 #functions
 def load_students():
