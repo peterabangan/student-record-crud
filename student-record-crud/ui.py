@@ -118,7 +118,7 @@ def search_students(*args):
     for row in tree.get_children():
         tree.delete(row)
     for record in db.get_all_students():
-        if query in str(record[1]).lower():
+        if query in str(record[1]).lower() or query in str(record[2]).lower():
             tree.insert("", "end", values=record)       
 
 def sort_by_firstname():
